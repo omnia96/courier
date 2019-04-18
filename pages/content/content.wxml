@@ -1,0 +1,85 @@
+<view class='container'>
+    <view class="header"></view>
+    <view class='placeholder_header' />
+    <scroll-view class="content-scroll" scroll-y="true">
+        <i-steps current="{{verticalCurrent}}" direction="vertical">
+            <i-step>
+                <view slot="title">
+                    已完成
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    进行中
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+        </i-steps>
+
+    </scroll-view>
+
+
+
+
+</view>

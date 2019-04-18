@@ -1,0 +1,3 @@
+<view class='D-icon'>
+  <i class="{{name}}" style="margin:1vw;{{size ? 'font-size:'+ size:''}};{{color ? 'color:'+ color:''}}"/>
+</view>

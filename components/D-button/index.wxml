@@ -1,0 +1,7 @@
+<!--components/D-button/index.wxml-->
+  <view 
+    class="D-button {{size}} {{round? 'round-'+size:''}} {{border? 'border-'+border:''}}" 
+    style="{{color? 'color:'+ color:''}};{{backGroundColor? 'background-color:'+ backGroundColor:''}};"
+    bindtap='handleTap'>{{value}}</view>
+
+

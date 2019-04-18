@@ -1,0 +1,65 @@
+/* components/D-button/index.wxss */
+.D-button{
+  display: inline-flex;
+  /* width: auto; */
+  height: 8vw;
+  background-color: rgba(255, 255, 255, 0);
+  color: green;
+  border-radius: 1vw;
+  font-size: 12px;
+  line-height: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4vw;
+  text-align: center;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  transform: translate(0rpx, 0rpx);
+  z-index: 1;
+}
+.D-button::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10vw;
+  background-color: rgba(255, 255, 255,0.95);
+  z-index: -1;
+  filter: blur(0.1px);
+}
+.small{
+  padding: 0 3vw;
+  height: 6vw;
+  font-size: 3vw;
+  background-color: white;
+}
+.midsize{
+  padding: 0 4vw;
+  font-size: 4vw;
+  height: 8vw;
+}
+.large{
+  padding: 0 5vw;
+   font-size: 5vw;
+  height: 10vw;
+}
+.round-small{
+  border-radius: 6vw;
+}
+.round-midsize{
+  border-radius: 8vw;
+}
+.round-large{
+  border-radius: 10vw;
+}
+.border-light{
+  border: 1rpx solid currentColor;
+  background-color: white; 
+}
+.border-heavy{
+  border: 5rpx solid currentColor;
+  /* background-color: white;  */
+  background-color: rgba(255, 255, 255, 0);
+}
