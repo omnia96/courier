@@ -1,11 +1,13 @@
 // pages/historys/historys.js
+const app =  getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    current: 'historys'
+    current: 'historys',
+    courierInfor:null
   },
   handleChange ({ detail }) {
     if (detail.key === "historys"){
@@ -16,17 +18,17 @@ Page({
       })
     }
 },
-handletap:function(courierId){
+handletap:function(e){
+  console.log(e.currentTarget.id)
   wx.navigateTo({
-    url: '../content/content?courierId=' + courierId,
+    url: '../content/content?courierId=' + e.currentTarget.id,
   })
 },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -41,6 +43,13 @@ handletap:function(courierId){
    */
   onShow: function () {
     wx.hideTabBar()
+    var cache = []
+    cache = app.getCache("userCache")
+    var that = this
+    console.log(cache)
+    that.setData({
+      courierInfor:cache
+    })
   },
 
   /**

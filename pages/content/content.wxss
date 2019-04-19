@@ -10,7 +10,7 @@
 
 .header {
     width: 100vw;
-    height: 50vw;
+    height: 20vw;
     background-color: #00a4f4;
     border-radius: 0vw 0vw 7vw 7vw;
     position: fixed;
@@ -23,10 +23,20 @@
 
 .content-scroll {
     width: 90vw;
-    height: 80vh;
+    height: 90vh;
     background-color: white;
     position: fixed;
-    top: 30vw;
+    top: 10vw;
     border-radius:1vw;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.content-header-com{
+    height: 10vw;
+    text-align: center;
+    font-size: 5vw;
+}
+.content-header-num{
+    height: 10vw;
+    text-align: center;
+    font-size: 4vw;
 }

@@ -1,10 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/historys/historys",
     "pages/content/content",
-    "pages/index/index",
     "pages/logs/logs"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
