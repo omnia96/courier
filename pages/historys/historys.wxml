@@ -1,56 +1,21 @@
 <view class='container'>
-  <view class="header" ></view>
-  <view class='placeholder_header'/>
+  <view class="header"></view>
+  <view class='placeholder_header' />
   <scroll-view class='content' scroll-y="true">
-  
-    <view class='courier-infor-list' bindtap="handletap">
-    <view class='courier-infor-list-header'>
-      <view class='courier-com'>中通快递</view>
-      <view class='courier-nu'>75141259828535</view>
+
+    <view class='courier-infor-list' wx:for="{{courierInfor}}"  wx:for-index="index" wx:for-item="item" wx:key="key"  id="{{item.data.nu}}" bindtap="handletap">
+      <view class='courier-infor-list-header' >
+        <view class='courier-com'>{{item.data.com}}</view>
+        <view class='courier-nu'>{{item.courierId}}</view>
+      </view>
+      <view class='courier-infor-list-content'>
+        <view class='courier-lastInfo'>{{item.data.data[0].context}}</view>
+      </view>
     </view>
-    <view class='courier-infor-list-content'>
-      <view class='courier-lastInfo'>货物已到达【西安市】</view>
-    </view>
-  </view><view class='courier-infor-list'>
-    <view class='courier-infor-list-header'>
-      <view class='courier-com'>中通快递</view>
-      <view class='courier-nu'>75141259828535</view>
-    </view>
-    <view class='courier-infor-list-content'>
-      <view class='courier-lastInfo'>货物已到达【西安市】</view>
-    </view>
-  </view>
-  <view class='courier-infor-list'>
-    <view class='courier-infor-list-header'>
-      <view class='courier-com'>中通快递</view>
-      <view class='courier-nu'>75141259828535</view>
-    </view>
-    <view class='courier-infor-list-content'>
-      <view class='courier-lastInfo'>货物已到达【西安市】</view>
-    </view>
-  </view>
-  <view class='courier-infor-list'>
-    <view class='courier-infor-list-header'>
-      <view class='courier-com'>中通快递</view>
-      <view class='courier-nu'>75141259828535</view>
-    </view>
-    <view class='courier-infor-list-content'>
-      <view class='courier-lastInfo'>货物已到达【西安市】</view>
-    </view>
-  </view>
-  <view class='courier-infor-list'>
-    <view class='courier-infor-list-header'>
-      <view class='courier-com'>中通快递</view>
-      <view class='courier-nu'>75141259828535</view>
-    </view>
-    <view class='courier-infor-list-content'>
-      <view class='courier-lastInfo'>货物已到达【西安市】</view>
-    </view>
-  </view>
   </scroll-view>
-  
+
 </view>
 <i-tab-bar current="{{ current }}" color="#00a4f4" bindchange="handleChange" fixed="true">
-    <i-tab-bar-item key="index" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-    <i-tab-bar-item key="historys" icon="time" current-icon="time_fill" title="历史记录"></i-tab-bar-item>
+  <i-tab-bar-item key="index" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
+  <i-tab-bar-item key="historys" icon="time" current-icon="time_fill" title="历史记录"></i-tab-bar-item>
 </i-tab-bar>

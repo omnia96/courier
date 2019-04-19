@@ -1,33 +1,17 @@
 <view class='container'>
-  <view class="header" ></view>
+  <view class="header"></view>
   <view class='search'>
-    <input class='search-box' type='text' placeholder='请输入您的快递单号' placeholder-style="font-size:4vw;" confirm-type="search" bindconfirm="handleConfirm"></input>
-    <view class='scanning'>
-      <D-icon name="fa fa-barcode" size='6vw' color='#00a4f4'/>
+    <input class='search-box' type='text' placeholder='请输入您的快递单号' placeholder-style="font-size:4vw;"
+      confirm-type="search" bindconfirm="handleConfirm"></input>
+    <view class='scanning' bindtap="handleScanning">
+      <D-icon name="fa fa-barcode" size='6vw' color='#00a4f4' />
     </view>
   </view>
-  <view class='placeholder_header'/>
-  <view class='courier-infor-list'>
-    <view class='courier-infor-list-header'>
-      <view class='courier-com'>中通快递</view>
-      <view class='courier-nu'>75141259828535</view>
-    </view>
-    <view class='courier-infor-list-content'>
-      <view class='courier-lastInfo'>货物已到达【西安市】</view>
-    </view>
-  </view>
-
-  <view class='courier-infor-list' wx:for="{{courierInfor}}" wx:for-index="idx" wx:for-item="itemName" wx:key="key">
-    <view class='courier-infor-list-header'>
-      <view class='courier-com'>{{itemName.com}}</view>
-      <view class='courier-nu'>75141259828535</view>
-    </view>
-    <view class='courier-infor-list-content'>
-      <view class='courier-lastInfo'>货物已到达【西安市】</view>
-    </view>
-  </view>
+  
+  <view class='placeholder_header' />
+  <view class='ad-bar'></view>
 </view>
 <i-tab-bar current="{{ current }}" color="#00a4f4" bindchange="handleChange" fixed="true">
-    <i-tab-bar-item key="index" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
-    <i-tab-bar-item key="historys" icon="time" current-icon="time_fill" title="历史记录"></i-tab-bar-item>
+  <i-tab-bar-item key="index" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
+  <i-tab-bar-item key="historys" icon="time" current-icon="time_fill" title="历史记录"></i-tab-bar-item>
 </i-tab-bar>
