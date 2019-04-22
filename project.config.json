@@ -14,11 +14,13 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.6.5",
 	"appid": "wxcb4c7f5366512d12",
-	"projectname": "Express",
+	"projectname": "courier-canary",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
