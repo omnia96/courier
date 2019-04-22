@@ -5,7 +5,7 @@
 
     <view class='courier-infor-list' wx:for="{{courierInfor}}"  wx:for-index="index" wx:for-item="item" wx:key="key"  id="{{item.data.nu}}" bindtap="handletap">
       <view class='courier-infor-list-header' >
-        <view class='courier-com'>{{item.data.com}}</view>
+        <view class='courier-com'>{{item.comName}}</view>
         <view class='courier-nu'>{{item.courierId}}</view>
       </view>
       <view class='courier-infor-list-content'>
