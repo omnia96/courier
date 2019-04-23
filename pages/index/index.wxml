@@ -7,6 +7,7 @@
       <D-icon name="fa fa-barcode" size='6vw' color='#00a4f4' />
     </view>
   </view>
+  <view class="search-button"></view>
   
   <view class='placeholder_header' />
   <view class='ad-bar'></view>

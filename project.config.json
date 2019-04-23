@@ -4,16 +4,17 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.5",
-	"appid": "wxcb4c7f5366512d12",
+	"appid": "wxdf884e544e3589f3",
 	"projectname": "courier-canary",
 	"debugOptions": {
 		"hidedInDevtools": []
