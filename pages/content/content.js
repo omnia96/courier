@@ -13,6 +13,16 @@ Page({
     courierInfor: null,
     orderInfo: null,
     spinShow: true,
+    message:null,
+    visible: false
+  },
+  handleClose () {
+    this.setData({
+        visible: false
+    });
+    wx.navigateBack({
+      delta:1
+    })
   },
   handleClick() {
     const addCurrent = this.data.current + 1;
@@ -128,18 +138,38 @@ Page({
             break;
           case "201":
             console.log("快递单号错误")
+            that.setData({
+              visible: true,
+              message:"快递单号错误"
+          })
             break;
           case "203":
             console.log("快递公司不存在")
+            that.setData({
+              visible: true,
+              message:"快递公司不存在"
+          })
             break;
           case "204":
             console.log("快递公司识别失败")
+            that.setData({
+              visible: true,
+              message:"快递公司识别失败"
+          })
             break;
           case "205":
             console.log("没有信息")
+            that.setData({
+              visible: true,
+              message:"没有信息"
+          })
             break;
           case "207":
             console.log("该单号被限制，错误单号")
+            that.setData({
+              visible: true,
+              message:"该单号被限制，错误单号"
+          })
             break;
           default:
             break;

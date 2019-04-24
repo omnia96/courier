@@ -24,6 +24,8 @@
 
 
 </view>
-
+<i-modal visible="{{ visible }}" bind:ok="handleClose" bind:cancel="handleClose">
+  <view>{{message}}</view>
+</i-modal>
 <i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>
   

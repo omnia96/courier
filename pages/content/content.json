@@ -2,6 +2,7 @@
     "usingComponents": {
         "i-steps": "/components/steps/index",
         "i-step": "/components/step/index",
-        "i-spin": "/components/spin/index"
+        "i-spin": "/components/spin/index",
+        "i-modal": "/components/modal/index"
     }
 }
