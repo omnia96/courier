@@ -7,7 +7,9 @@ Page({
    */
   data: {
     current: 'historys',
-    courierInfor:null
+    courierInfor:null,
+    visible:false,
+    deleteId:null
   },
   handleChange ({ detail }) {
     if (detail.key === "historys"){
@@ -21,6 +23,38 @@ Page({
         url:"../index/index"
       })
     }
+},
+handleOpen (e) {
+  console.log(e)
+  this.setData({
+      visible: true,
+      deleteId:e.target.id
+  });
+},
+
+handleClose () {
+  this.setData({
+      visible: false
+  });
+},
+handleDelete(e){
+
+  console.log(e.target.id)
+  var array = {}
+  var newArray = {}
+  array = app.getCache("userCache")
+  for(var index in array){
+    if(index != e.target.id){
+      newArray[index] = array[index]
+    }
+  }
+  console.log(array)
+console.log(newArray)
+  app.setCache("userCache",newArray)
+  this.setData({
+    visible: false
+});
+this.onShow()
 },
 handletap:function(e){
   console.log(e.currentTarget.id)

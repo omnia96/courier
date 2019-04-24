@@ -47,6 +47,19 @@
   justify-content: start;
   align-items: center;
 }
+.courier-infor-list-header-title{
+  width: 75vw;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.delete{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: red;
+  font-size: 3vw;
+}
 .courier-com{
   font-size: 4vw;
   font-weight: bold;
