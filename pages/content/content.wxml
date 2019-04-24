@@ -10,10 +10,10 @@
         <i-steps current="{{verticalCurrent}}" direction="vertical">
             <i-step wx:for="{{courierInfor}}" wx:for-index="index" wx:for-item="item" wx:key="key">
                 <view slot="title">
-                    {{item.AcceptTime}}
+                    {{item.time}}
                 </view>
                 <view slot="content">
-                    {{item.AcceptStation}}
+                    {{item.status}}
                 </view>
             </i-step>
         </i-steps>

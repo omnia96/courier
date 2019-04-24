@@ -9,7 +9,7 @@
         <view class='courier-nu'>{{item.courierId}}</view>
       </view>
       <view class='courier-infor-list-content'>
-        <view class='courier-lastInfo'>{{item.data[0].AcceptStation}}</view>
+        <view class='courier-lastInfo'>{{item.data[0].status}}</view>
       </view>
     </view>
   </scroll-view>
