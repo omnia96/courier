@@ -10,7 +10,8 @@ Page({
     slidingDistance:0,
     height:50,
     courierInfor:null,
-    current: 'index'
+    current: 'index',
+    courierId:null
   },
 
   /**
@@ -34,23 +35,57 @@ Page({
 
     // }
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
   handleChange ({ detail }) {
     if (detail.key === "index"){
       this.onShow()
-    }else{
+    }else if(detail.key === "historys"){
       wx.switchTab({
         url:"../historys/historys"
+      })
+    }else if(detail.key === "remind"){
+      wx.switchTab({
+        url:"../remind/remind"
       })
     }
 },
   handleConfirm:function(e){
+    if (e.detail.value != ""){
+      var courierId = e.detail.value
+      // console.log(courierId)
+      var that = this
+      that.setData({
+        courierId: courierId
+      })
+      wx.navigateTo({
+        url: '../content/content?courierId=' + courierId,
+      })
+    }
+  },
+  handleblur:function(e){
+    if (e.detail.value != "") {
     var courierId = e.detail.value
     // console.log(courierId)
     var that = this
-    //75141259828535
-    wx.navigateTo({
-      url: '../content/content?courierId=' + courierId,
+    that.setData({
+      courierId:courierId
     })
+    }
+  },
+  handleSearch:function(){
+    var that = this
+
+    var courierId = that.data.courierId
+    if(courierId != null){
+      wx.navigateTo({
+        url: '../content/content?courierId=' + courierId,
+      })
+    }
   },
   handleScanning:function(e){
     wx.scanCode({

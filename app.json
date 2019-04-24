@@ -3,12 +3,13 @@
     "pages/index/index",
     "pages/historys/historys",
     "pages/content/content",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/remind/remind"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00a4f4",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "快递查询",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -22,6 +23,10 @@
       },
       {
         "pagePath": "pages/historys/historys",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/remind/remind",
         "text": ""
       }
     ]

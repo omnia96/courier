@@ -3,13 +3,13 @@
   <view class='placeholder_header' />
   <scroll-view class='content' scroll-y="true">
 
-    <view class='courier-infor-list' wx:for="{{courierInfor}}"  wx:for-index="index" wx:for-item="item" wx:key="key"  id="{{item.data.nu}}" bindtap="handletap">
+    <view class='courier-infor-list' wx:for="{{courierInfor}}"  wx:for-index="index" wx:for-item="item" wx:key="key"  id="{{item.courierId}}" bindtap="handletap">
       <view class='courier-infor-list-header' >
         <view class='courier-com'>{{item.comName}}</view>
         <view class='courier-nu'>{{item.courierId}}</view>
       </view>
       <view class='courier-infor-list-content'>
-        <view class='courier-lastInfo'>{{item.data.data[0].context}}</view>
+        <view class='courier-lastInfo'>{{item.data[0].AcceptStation}}</view>
       </view>
     </view>
   </scroll-view>
@@ -18,4 +18,5 @@
 <i-tab-bar current="{{ current }}" color="#00a4f4" bindchange="handleChange" fixed="true">
   <i-tab-bar-item key="index" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
   <i-tab-bar-item key="historys" icon="time" current-icon="time_fill" title="历史记录"></i-tab-bar-item>
+  <i-tab-bar-item key="remind" icon="clock" current-icon="clock_fill" title="到件提醒"></i-tab-bar-item>
 </i-tab-bar>

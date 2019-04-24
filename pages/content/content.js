@@ -1,5 +1,6 @@
 const app = getApp();
 var md5 = require("../../utils/md5")
+var base64 = require("../../utils/base64")
 
 Page({
 
@@ -10,7 +11,7 @@ Page({
     current: 2,
     verticalCurrent: 0,
     courierInfor: null,
-    comName:null,
+    orderInfo: null,
     spinShow: true,
   },
   handleClick() {
@@ -24,9 +25,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    console.log(options.courierId)
     var that = this
-    that.requestCourierInfor(options.courierId)
+    // that.requestCourierInfor(options.courierId)
+    that.requestOrderCom(options.courierId, that.requestOrderInfo)
   },
 
   /**
@@ -42,111 +44,139 @@ Page({
   onShow: function () {
 
   },
-  onSwitchChange () {
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  onSwitchChange() {
     var value = this.data.spinShow
     this.setData({
-        spinShow: !value
+      spinShow: !value
     });
-},
+  },
   requestCourierInfor: function (courierId) {
-    var that = this
-    wx.request({
-      url: 'https://www.kuaidi100.com/autonumber/autoComNum?text=' + courierId,
-      method: "POST",
-      success(res) {
-        var res = res.data.auto[0].comCode
-        var key = "qJKUuYiN7448"
-        var customer = "BE828956D82E1D71D98625FE39685BB5"
-        var param = {
-          "com": res,
-          "num": courierId,
-          "phone": "",
-          "from": "",
-          "to": "",
-          "resultv2": "1"
-        }
-        var sign = md5.hex_md5(JSON.stringify(param) + key + customer)
-        // console.log(JSON.stringify(param) + key +customer)
-        sign = sign.toUpperCase()
-        var data = "customer=" + customer + "&sign=" + sign + "&param=" + JSON.stringify(param)
-        // console.log(data)
-        var com = res
-        var reqTask = wx.request({
-          url: 'https://p.kuaidi100.com/mobile/mobileapi.do?method=Initialize&version=0',
-          data: {},
-          header: {'content-type':'application/json'},
-          method: 'GET',
-          dataType: 'json',
-          responseType: 'text',
-          success: (result) => {
-            console.log(result.data.companyList)
-            var array = []
-            array = result.data.companyList
-            var arr = array.filter(function(item){
-              // var reg = new RegExp(com)
-              // return reg.test(item["number"])
-              if(item["number"] == com){
-                return item
-              }
-            })
-            var comName = arr[0].name
-            console.log(comName)
-            that.setData({
-              comName:comName
-            })
-            wx.request({
-              url: 'https://poll.kuaidi100.com/poll/query.do',
-              data: data,
-              header: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-              method: "POST",
-              success(res) {
-                var res = res.data
-                console.log(res)
-                that.setData({
-                  courierInfor: res
-                })
-                var courierInfor = []
-                var cache = app.getCache("userCache")
-                if (cache) {
-                  courierInfor = cache
-                  var courierIdIf = false
-                  for (var i = 0; i < courierInfor.length; i++) {
-                    if (courierInfor[i].courierId === courierId) {
-                      courierIdIf = true
-                      courierInfor[i].data = res
-                    }
-                  }
-                  app.setCache("userCache", courierInfor)
-                  if (courierIdIf == false) {
-                    courierInfor.push({
-                      comName:comName,
-                      courierId: courierId,
-                      time: app.getCurrentTime(),
-                      data: res
-                    })
-                    app.setCache("userCache", courierInfor)
-                  }
-                } else {
-                  courierInfor.push({
-                    comName:comName,
-                    courierId: courierId,
-                    time: app.getCurrentTime(),
-                    data: res
-                  })
-                  app.setCache("userCache", courierInfor)
-                }
-                that.onSwitchChange()
-              }
-            
-            })
 
-          },
-          fail: () => {},
-          complete: () => {}
+  },
+  requestOrderCom: function (id, callback) {
+    var that = this
+    var ReqURL = "https://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx"
+    var EBusinessID = "1469691"
+    var AppKey = "ed83126f-cc12-4d31-84ff-75e166b89cef"
+    var requestData = {
+      LogisticCode: id
+    }
+    requestData = JSON.stringify(requestData)
+    var data = {
+      EBusinessID: EBusinessID,
+      RequestType: "2002",
+      RequestData: encodeURIComponent(requestData),
+      DataType: "2"
+    }
+    var dataSign = encodeURI(base64.toBase64(md5.hex_md5(requestData + AppKey)))
+    data["DataSign"] = dataSign
+
+    wx.request({
+      url: ReqURL,
+      data: data,
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      success(res) {
+        console.log(res)
+        // console.log(res.data.Shippers[0].ShipperCode)
+        var shipperCode = res.data.Shippers[0].ShipperCode
+        var shipperName = res.data.Shippers[0].ShipperName
+        that.setData({
+          orderInfo:{
+            id:id,
+            name:shipperName
+          }
         })
+        callback(id, shipperCode)
       }
     })
-  }
+  },
+  requestOrderInfo: function (courierId, com) {
+    // courierId = "75141259828535"
+    var that = this
+    var EBusinessID = "1469691"
+    var AppKey = "ed83126f-cc12-4d31-84ff-75e166b89cef"
+    var ReqURL = "https://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx"
+
+    var requestData = {
+      OrderCode: "",
+      ShipperCode: com,
+      LogisticCode: courierId
+    }
+    requestData = JSON.stringify(requestData)
+    console.log(requestData)
+    var data = {
+      EBusinessID: EBusinessID,
+      RequestType: "1002",
+      RequestData: encodeURIComponent(requestData),
+      DataType: "2"
+    }
+    console.log(data)
+
+    var sign = md5.hex_md5(requestData + AppKey)
+    var signn = base64.toBase64(sign)
+    var signnn = encodeURIComponent(signn)
+    console.log(sign)
+    console.log(signn)
+    console.log(signnn)
+
+    data['DataSign'] = signnn
+
+    wx.request({
+        url: ReqURL,
+        data: data,
+        method: "POST",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        success(res) {
+          console.log(res)
+          var arr = res.data.Traces
+          var res  = arr.reverse()
+          console.log(res)
+          that.setData({
+            courierInfor: res
+          })
+          var courierInfor = []
+          var cache = app.getCache("userCache")
+          if (cache) {
+            courierInfor = cache
+            var courierIdIf = false
+            for (var i = 0; i < courierInfor.length; i++) {
+              if (courierInfor[i].courierId === courierId) {
+                courierIdIf = true
+                courierInfor[i].data = res
+              }
+            }
+            app.setCache("userCache", courierInfor)
+            if (courierIdIf == false) {
+              courierInfor.push({
+                comName: comName,
+                courierId: courierId,
+                time: app.getCurrentTime(),
+                data: res
+              })
+              app.setCache("userCache", courierInfor)
+            }
+          } else {
+            courierInfor.push({
+              comName: comName,
+              courierId: courierId,
+              time: app.getCurrentTime(),
+              data: res
+            })
+            app.setCache("userCache", courierInfor)
+          }
+          that.onSwitchChange()
+        }
+    })
+}
 })

@@ -3,17 +3,17 @@
     <view class='placeholder_header' />
     <scroll-view class="content-scroll" scroll-y="true">
         <view class="content-header">
-            <view class="content-header-com">{{comName}}</view>
-            <view class="content-header-num">{{courierInfor.nu}}</view>
+            <view class="content-header-com">{{orderInfo.name}}</view>
+            <view class="content-header-num">{{orderInfo.id}}</view>
         </view>
           
         <i-steps current="{{verticalCurrent}}" direction="vertical">
-            <i-step wx:for="{{courierInfor.data}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+            <i-step wx:for="{{courierInfor}}" wx:for-index="index" wx:for-item="item" wx:key="key">
                 <view slot="title">
-                    {{item.time}}
+                    {{item.AcceptTime}}
                 </view>
                 <view slot="content">
-                    {{item.context}}
+                    {{item.AcceptStation}}
                 </view>
             </i-step>
         </i-steps>

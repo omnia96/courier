@@ -1,20 +1,25 @@
-// pages/historys/historys.js
-const app =  getApp();
+// pages/remind/remind.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    current: 'historys',
-    courierInfor:null
+    current: 'remind',
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
   handleChange ({ detail }) {
-    if (detail.key === "historys"){
+    if (detail.key === "remind"){
       this.onShow()
-    }else if(detail.key === "remind"){
+    }else if(detail.key === "historys"){
       wx.switchTab({
-        url:"../remind/remind"
+        url:"../historys/historys"
       })
     }else if(detail.key === "index"){
       wx.switchTab({
@@ -22,19 +27,6 @@ Page({
       })
     }
 },
-handletap:function(e){
-  console.log(e.currentTarget.id)
-  wx.navigateTo({
-    url: '../content/content?courierId=' + e.currentTarget.id,
-  })
-},
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -46,14 +38,7 @@ handletap:function(e){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.hideTabBar()
-    var cache = []
-    cache = app.getCache("userCache")
-    var that = this
-    console.log(cache)
-    that.setData({
-      courierInfor:cache
-    })
+
   },
 
   /**
@@ -81,13 +66,6 @@ handletap:function(e){
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })
