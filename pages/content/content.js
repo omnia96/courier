@@ -37,28 +37,32 @@ Page({
   onLoad: function (options) {
     console.log(options.courierId)
     var that = this
-
     var courierInfor =  app.getCache("userCache")
-    console.log(courierInfor[options.courierId])
-    if(courierInfor[options.courierId] != undefined){
-      var cacheTime = courierInfor[options.courierId].time
-      var cha = app.TimeDifference(cacheTime,app.getCurrentTime())
-      if(cha < 60){
-        that.setData({
-          orderInfo:{
-            id:options.courierId,
-            name:courierInfor[options.courierId].comName
-          },
-          courierInfor:courierInfor[options.courierId].data
-        })
-        that.onSwitchChange()
-      }else{
+    if(courierInfor != false){
+      console.log(courierInfor[options.courierId])
+      if (courierInfor[options.courierId] != undefined) {
+        var cacheTime = courierInfor[options.courierId].time
+        var cha = app.TimeDifference(cacheTime, app.getCurrentTime())
+        if (cha < 60) {
+          that.setData({
+            orderInfo: {
+              id: options.courierId,
+              name: courierInfor[options.courierId].comName
+            },
+            courierInfor: courierInfor[options.courierId].data
+          })
+          that.onSwitchChange()
+        } else {
+          that.requestCourierInfor(options.courierId)
+        }
+      } else {
         that.requestCourierInfor(options.courierId)
       }
     }else{
       that.requestCourierInfor(options.courierId)
     }
-    // that.requestOrderCom(options.courierId, that.requestOrderInfo)
+    
+    
   },
 
   /**

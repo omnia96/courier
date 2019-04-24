@@ -86,6 +86,9 @@ Page({
         url: '../content/content?courierId=' + courierId,
       })
     }
+    that.setData({
+      courierId:null
+    })
   },
   handleScanning:function(e){
     wx.scanCode({
