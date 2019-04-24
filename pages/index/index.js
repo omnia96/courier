@@ -63,7 +63,7 @@ Page({
         courierId: courierId
       })
       wx.navigateTo({
-        url: '../content/content?courierId=' + courierId,
+        url: '../content/content?courierId=' + e.detail.value,
       })
     }
   },
@@ -84,6 +84,9 @@ Page({
     if(courierId != null){
       wx.navigateTo({
         url: '../content/content?courierId=' + courierId,
+      })
+      that.setData({
+        courierId:null
       })
     }
   },

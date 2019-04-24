@@ -138,7 +138,9 @@ Page({
           "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
         },
         success(res) {
+          that.onSwitchChange()
           console.log(res)
+          var comName = that.data.orderInfo.name
           var arr = res.data.Traces
           var res  = arr.reverse()
           console.log(res)
@@ -175,7 +177,6 @@ Page({
             })
             app.setCache("userCache", courierInfor)
           }
-          that.onSwitchChange()
         }
     })
 }
