@@ -27,7 +27,26 @@ Page({
   onLoad: function (options) {
     console.log(options.courierId)
     var that = this
-    that.requestCourierInfor(options.courierId)
+
+    var courierInfor =  app.getCache("userCache")
+    if(courierInfor != false){
+      var cacheTime = courierInfor[options.courierId].time
+      var cha = app.TimeDifference(cacheTime,app.getCurrentTime())
+      if(cha < 60){
+        that.setData({
+          orderInfo:{
+            id:options.courierId,
+            name:courierInfor[options.courierId].comName
+          },
+          courierInfor:courierInfor[options.courierId].data
+        })
+        that.onSwitchChange()
+      }else{
+        that.requestCourierInfor(options.courierId)
+      }
+    }else{
+      that.requestCourierInfor(options.courierId)
+    }
     // that.requestOrderCom(options.courierId, that.requestOrderInfo)
   },
 
@@ -84,35 +103,25 @@ Page({
               }
             })
             var comName = res.data.result.expName
-            var courierInfor = []
+            var courierInfor = {}
             var cache = app.getCache("userCache")
-            if (cache) {
+            if(cache != false){
               courierInfor = cache
-              var courierIdIf = false
-              for (var i = 0; i < courierInfor.length; i++) {
-                if (courierInfor[i].courierId === courierId) {
-                  courierIdIf = true
-                  courierInfor[i].data = res.data.result.list
-                }
+              courierInfor[courierId] = {
+                comName:comName,
+                courierId:courierId,
+                time:app.getCurrentTime(),
+                data:res.data.result.list
               }
-              app.setCache("userCache", courierInfor)
-              if (courierIdIf == false) {
-                courierInfor.push({
-                  comName: comName,
-                  courierId: courierId,
-                  time: app.getCurrentTime(),
-                  data: res.data.result.list
-                })
-                app.setCache("userCache", courierInfor)
+              app.setCache("userCache",courierInfor)
+            }else{
+              courierInfor[courierId] = {
+                comName:comName,
+                courierId:courierId,
+                time:app.getCurrentTime(),
+                data:res.data.result.list
               }
-            } else {
-              courierInfor.push({
-                comName: comName,
-                courierId: courierId,
-                time: app.getCurrentTime(),
-                data: res.data.result.list
-              })
-              app.setCache("userCache", courierInfor)
+              app.setCache("userCache",courierInfor)
             }
             that.onSwitchChange()
             break;
