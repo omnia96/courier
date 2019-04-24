@@ -22,12 +22,12 @@
 }
 
 .content-scroll {
-    width: 90vw;
+    width: 84vw;
     height: 90vh;
     background-color: white;
     position: fixed;
     top: 10vw;
-    border-radius:1vw;
+    padding: 3vw;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .content-header-com{
