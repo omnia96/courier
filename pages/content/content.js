@@ -29,7 +29,8 @@ Page({
     var that = this
 
     var courierInfor =  app.getCache("userCache")
-    if(courierInfor != false){
+    console.log(courierInfor[options.courierId])
+    if(courierInfor[options.courierId] != undefined){
       var cacheTime = courierInfor[options.courierId].time
       var cha = app.TimeDifference(cacheTime,app.getCurrentTime())
       if(cha < 60){
