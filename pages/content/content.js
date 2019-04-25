@@ -13,15 +13,15 @@ Page({
     courierInfor: null,
     orderInfo: null,
     spinShow: true,
-    message:null,
+    message: null,
     visible: false
   },
-  handleClose () {
+  handleClose() {
     this.setData({
-        visible: false
+      visible: false
     });
     wx.navigateBack({
-      delta:1
+      delta: 1
     })
   },
   handleClick() {
@@ -37,13 +37,43 @@ Page({
   onLoad: function (options) {
     console.log(options.courierId)
     var that = this
-    var courierInfor =  app.getCache("userCache")
-    if(courierInfor != false){
+    var courierInfor = app.getCache("userCache")
+    if (courierInfor != false) {
       console.log(courierInfor[options.courierId])
       if (courierInfor[options.courierId] != undefined) {
         var cacheTime = courierInfor[options.courierId].time
-        var cha = app.TimeDifference(cacheTime, app.getCurrentTime())
-        if (cha < 60) {
+        var heartbeat = app.TimeDifference(cacheTime, app.getCurrentTime())
+        var date = new Date()
+        var that = this
+        var hour = date.getHours()
+        if (hour > 6 && hour < 20) {
+          if (heartbeat < 120) {
+            that.setData({
+              orderInfo: {
+                id: options.courierId,
+                name: courierInfor[options.courierId].comName
+              },
+              courierInfor: courierInfor[options.courierId].data
+            })
+            that.onSwitchChange()
+          } else {
+            that.requestCourierInfor(options.courierId)
+          }
+        } else {
+          if (heartbeat < 240) {
+            that.setData({
+              orderInfo: {
+                id: options.courierId,
+                name: courierInfor[options.courierId].comName
+              },
+              courierInfor: courierInfor[options.courierId].data
+            })
+            that.onSwitchChange()
+          } else {
+            that.requestCourierInfor(options.courierId)
+          }
+        }
+        if (heartbeat < 120) {
           that.setData({
             orderInfo: {
               id: options.courierId,
@@ -58,11 +88,11 @@ Page({
       } else {
         that.requestCourierInfor(options.courierId)
       }
-    }else{
+    } else {
       that.requestCourierInfor(options.courierId)
     }
-    
-    
+
+
   },
 
   /**
@@ -112,31 +142,31 @@ Page({
               courierInfor: res.data.result.list
             })
             that.setData({
-              orderInfo:{
-                name:res.data.result.expName,
-                id:courierId
+              orderInfo: {
+                name: res.data.result.expName,
+                id: courierId
               }
             })
             var comName = res.data.result.expName
             var courierInfor = {}
             var cache = app.getCache("userCache")
-            if(cache != false){
+            if (cache != false) {
               courierInfor = cache
               courierInfor[courierId] = {
-                comName:comName,
-                courierId:courierId,
-                time:app.getCurrentTime(),
-                data:res.data.result.list
+                comName: comName,
+                courierId: courierId,
+                time: app.getCurrentTime(),
+                data: res.data.result.list
               }
-              app.setCache("userCache",courierInfor)
-            }else{
+              app.setCache("userCache", courierInfor)
+            } else {
               courierInfor[courierId] = {
-                comName:comName,
-                courierId:courierId,
-                time:app.getCurrentTime(),
-                data:res.data.result.list
+                comName: comName,
+                courierId: courierId,
+                time: app.getCurrentTime(),
+                data: res.data.result.list
               }
-              app.setCache("userCache",courierInfor)
+              app.setCache("userCache", courierInfor)
             }
             that.onSwitchChange()
             break;
@@ -144,36 +174,36 @@ Page({
             console.log("快递单号错误")
             that.setData({
               visible: true,
-              message:"快递单号错误"
-          })
+              message: "快递单号错误"
+            })
             break;
           case "203":
             console.log("快递公司不存在")
             that.setData({
               visible: true,
-              message:"快递公司不存在"
-          })
+              message: "快递公司不存在"
+            })
             break;
           case "204":
             console.log("快递公司识别失败")
             that.setData({
               visible: true,
-              message:"快递公司识别失败"
-          })
+              message: "快递公司识别失败"
+            })
             break;
           case "205":
             console.log("没有信息")
             that.setData({
               visible: true,
-              message:"没有信息"
-          })
+              message: "没有信息"
+            })
             break;
           case "207":
             console.log("该单号被限制，错误单号")
             that.setData({
               visible: true,
-              message:"该单号被限制，错误单号"
-          })
+              message: "该单号被限制，错误单号"
+            })
             break;
           default:
             break;
