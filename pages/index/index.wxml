@@ -16,3 +16,6 @@
   <i-tab-bar-item key="historys" icon="time" current-icon="time_fill" title="历史记录"></i-tab-bar-item>
   <i-tab-bar-item key="remind" icon="clock" current-icon="clock_fill" title="到件提醒"></i-tab-bar-item>
 </i-tab-bar>
+<i-modal visible="{{ visible }}" bind:ok="handleClose" bind:cancel="handleClose">
+  <view>您今天的查询单数不够了哦，请明天再来哦</view>
+</i-modal>

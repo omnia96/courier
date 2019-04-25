@@ -26,14 +26,35 @@ Page({
   onShow: function () {
     wx.hideTabBar()
     var that = this
-    // var cache = app.getCache("userCache")
-    // if (cache) {
-    //   that.setData({
-    //     courierInfor: cache
-    //   })
-    // } else {
+    var inquireNum = app.getCache("inquireNum")
+    if(inquireNum != false){
+      var timeDifference = app.TimeDifference(inquireNum.upDataTime,app.getCurrentTime())
+      if(timeDifference < 720){
 
-    // }
+      }else{
+        that.scoresMinus(inquireNum,"+")
+      }
+    }else{
+      var data = {
+        upDataTime:app.getCurrentTime(),
+        scores:5
+      }
+      app.setCache("inquireNum",data)
+    }
+  },
+  scoresMinus(array,type){
+    var upDataTime = array.upDataTime
+    var scores = Number
+    if(type == "+"){
+      scores = array.scores + 1
+    }else{
+      scores = array.scores - 1
+    }
+    var data = {
+          upDataTime:upDataTime,
+          scores:scores
+    }
+    app.setCache("inquireNum",data)
   },
   /**
    * 用户点击右上角分享
@@ -62,9 +83,18 @@ Page({
       that.setData({
         courierId: courierId
       })
-      wx.navigateTo({
-        url: '../content/content?courierId=' + courierId,
-      })
+      var scores = app.getCache("inquireNum")
+      if(scores.scores >0){
+        wx.navigateTo({
+          url: '../content/content?courierId=' + courierId,
+        })
+        that.scoresMinus(scores,"-")
+      }else{
+        that.setData({
+          visible: true
+        })
+      }
+      
     }
   },
   handleblur:function(e){
@@ -82,12 +112,26 @@ Page({
 
     var courierId = that.data.courierId
     if(courierId != null){
-      wx.navigateTo({
-        url: '../content/content?courierId=' + courierId,
-      })
+      var scores = app.getCache("inquireNum")
+      if(scores.scores >0){
+        wx.navigateTo({
+          url: '../content/content?courierId=' + courierId,
+        })
+        that.scoresMinus(scores,"-")
+      }else{
+        that.setData({
+          visible: true
+        })
+      }
     }
     that.setData({
       courierId:null
+    })
+  },
+  handleClose(){
+    var that = this
+    that.setData({
+      visible:false
     })
   },
   handleScanning:function(e){

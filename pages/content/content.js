@@ -73,18 +73,6 @@ Page({
             that.requestCourierInfor(options.courierId)
           }
         }
-        if (heartbeat < 120) {
-          that.setData({
-            orderInfo: {
-              id: options.courierId,
-              name: courierInfor[options.courierId].comName
-            },
-            courierInfor: courierInfor[options.courierId].data
-          })
-          that.onSwitchChange()
-        } else {
-          that.requestCourierInfor(options.courierId)
-        }
       } else {
         that.requestCourierInfor(options.courierId)
       }
@@ -134,7 +122,6 @@ Page({
       },
       success(res) {
         console.log(res.data)
-
         switch (res.data.status) {
           case "0":
             console.log("成功")
