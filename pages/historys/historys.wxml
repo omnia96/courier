@@ -16,7 +16,9 @@
       </view>
     </view>
   </scroll-view>
-
+  <!-- <view class='ad-bar'>
+    <ad unit-id="adunit-4bfc2f101e10a922"></ad>
+  </view> -->
 </view>
 <i-modal visible="{{ visible }}" id="{{deleteId}}" bind:ok="handleDelete" bind:cancel="handleClose">
   <view>你确定要删除这条快递信息嘛？</view>

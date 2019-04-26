@@ -63,14 +63,11 @@
   justify-content: center;
 }
 .placeholder_header{
-  height: 75vh;
+  /* height: 75vh; */
 }
 .ad-bar{
-  min-height: 20vw;
-  width: 90vw;
-  padding:1vw;
-  background-color: #ffffff;
-  margin-top: 2vw;
-  margin-bottom: 2vw;
-  border-radius: 1vw;
+  position: fixed;
+  bottom: 50px;
+  width: 100vw;
+  /* background-color: #ffffff; */
 }

@@ -1,28 +1,28 @@
 <view class='container'>
     <view class="header"></view>
     <view class='placeholder_header' />
-    <scroll-view class="content-scroll" scroll-y="true">
-        <view class="content-header">
-            <view class="content-header-com">{{orderInfo.name}}</view>
-            <view class="content-header-num">{{orderInfo.id}}</view>
-        </view>
-          
-        <i-steps current="{{verticalCurrent}}" direction="vertical">
-            <i-step wx:for="{{courierInfor}}" wx:for-index="index" wx:for-item="item" wx:key="key">
-                <view slot="title">
-                    {{item.time}}
-                </view>
-                <view slot="content">
-                    {{item.status}}
-                </view>
-            </i-step>
-        </i-steps>
-
-    </scroll-view>
-
-
-
-
+    <view class='card'>
+      <scroll-view class="content-scroll" scroll-y="true">
+          <view class="content-header">
+              <view class="content-header-com">{{orderInfo.name}}</view>
+              <view class="content-header-num">{{orderInfo.id}}</view>
+          </view>
+            
+          <i-steps current="{{verticalCurrent}}" direction="vertical">
+              <i-step wx:for="{{courierInfor}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+                  <view slot="title">
+                      {{item.time}}
+                  </view>
+                  <view slot="content">
+                      {{item.status}}
+                  </view>
+              </i-step>
+          </i-steps>
+      </scroll-view>
+      <view class='ad-bar'>
+        <ad unit-id="adunit-d89bb93f1fdcce94"></ad>
+      </view>
+  </view>
 </view>
 <i-modal visible="{{ visible }}" bind:ok="handleClose" bind:cancel="handleClose">
   <view>{{message}}</view>

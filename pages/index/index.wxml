@@ -9,7 +9,9 @@
   </view>
 <view class="search-button" bind:tap="handleSearch">查询</view>  
   <view class='placeholder_header' />
-  <view class='ad-bar'></view>
+  <view class='ad-bar'>
+    <ad unit-id="adunit-4bfc2f101e10a922"></ad>
+  </view>
 </view>
 <i-tab-bar current="{{ current }}" color="#00a4f4" bindchange="handleChange" fixed="true">
   <i-tab-bar-item key="index" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>

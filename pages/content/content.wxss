@@ -21,15 +21,20 @@
     height: 62vw;
 }
 
-.content-scroll {
-    width: 84vw;
-    height: 90vh;
-    background-color: white;
-    position: fixed;
-    top: 10vw;
-    padding: 3vw;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+.card{
+  width: 95vw;
+  position: fixed;
+  top: 10vw;
+  bottom: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: white;
 }
+.content-scroll {
+    width: 95vw;
+    height: 74vh;
+    /* background: red; */
+}
+
 .content-header-com{
     height: 10vw;
     text-align: center;
@@ -39,4 +44,9 @@
     height: 10vw;
     text-align: center;
     font-size: 4vw;
+}
+.ad-bar{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
