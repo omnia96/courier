@@ -37,7 +37,7 @@ Page({
     }else{
       var data = {
         upDataTime:app.getCurrentTime(),
-        scores:5
+        scores:10
       }
       app.setCache("inquireNum",data)
     }
@@ -51,7 +51,7 @@ Page({
       scores = array.scores - 1
     }
     var data = {
-          upDataTime:upDataTime,
+          upDataTime:app.getCurrentTime(),
           scores:scores
     }
     app.setCache("inquireNum",data)
@@ -106,6 +106,14 @@ Page({
       courierId:courierId
     })
     }
+  },
+  handleInput(e){
+    var that = this
+    var courierId = e.detail.value
+    console.log(e.detail)
+    that.setData({
+      courierId: courierId
+    })
   },
   handleSearch:function(){
     var that = this

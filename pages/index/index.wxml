@@ -2,7 +2,7 @@
   <view class="header"></view>
   <view class='search'>
     <input class='search-box' type='text' placeholder='请输入您的快递单号' placeholder-style="font-size:4vw;"
-      confirm-type="search" bindconfirm="handleConfirm" bindblur="handleblur"></input>
+      confirm-type="search" bindconfirm="handleConfirm"  bindinput='handleInput' value='{{courierId}}'></input>
     <view class='scanning' bindtap="handleScanning">
       <D-icon name="fa fa-barcode" size='6vw' color='#00a4f4' />
     </view>
